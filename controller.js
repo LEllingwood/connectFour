@@ -41,7 +41,7 @@ function checkWin() {
         || searchForFourConsecutiveDiscs(diagonallyUpRight)
         || searchForFourConsecutiveDiscs(diagonallyUpLeft)
     ) {
-        console.log("YOU WON DUMMY") // TODO: turn this into a view function to show win message to user
+        addWinMessage();
     }
 }
 

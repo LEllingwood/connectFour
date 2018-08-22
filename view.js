@@ -15,10 +15,18 @@ function createDiscInView(currentPlayer, columnElement) {
 }
 
 
-// lines below establish a "refresh" of the page.  need to work on reload/load
+// lines below establish a "refresh" of the page. needs some visual formatting
 function initView() {
     askAllColumnsToListenForClick()
     document.getElementById("refresh").addEventListener("click", function () {
-        window.load()
+        window.top.location.reload();
     })
+}
+
+function addWinMessage() {
+    const message = document.createTextNode("You win, Dummy!");
+    const newP = document.createElement("p");
+    const destination = document.getElementById("winMessage");
+    newP.appendChild(message);
+    destination.appendChild(newP);
 }
