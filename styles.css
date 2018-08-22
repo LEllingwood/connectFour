@@ -12,10 +12,12 @@ body {
 
 h1 {
     font-size: 4em;
-    color: yellowgreen;
+    /* color: yellowgreen; */
+    color: #fefe33;
     text-align: center;
     /* margin: auto; */
     text-shadow: 0 0 3px black;
+    margin-top: 0in;
 }
 
 h3 {
@@ -26,8 +28,8 @@ h3 {
 }
 
 #red {
-    color: red;
-    text-shadow: 0 0 3px black;
+    color: #800000;
+    text-shadow: 0 0 3px whitesmoke;
 }
 
 #black {
@@ -41,14 +43,15 @@ h3 {
 
 #winMessage {
     font-size: 40px;
-    color:whitesmoke;
+    /* color:whitesmoke; */
+    color: #f7f7d4;
     text-align: center;
     background-image: url("https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2017/chemistexpla.jpg");
     
 }
 
 .column {
-    background:beige;
+    background: whitesmoke;
     display: flex;
     flex-direction: column-reverse;
     height: 600px;
@@ -63,8 +66,8 @@ h3 {
 }
 
 .red {
-    background-color: red;
-    /* background-color: E62F2B;  */
+    /* background-color: red; */
+    background-color: #800000; 
 }
 
 .black {
@@ -72,8 +75,8 @@ h3 {
 }
 
 #refresh {
-    background-color: green;
-    border: 2px solid yellowgreen;
-    font-size: 12px;
-    color: whitesmoke;
+    background-color: #f7f7d4;
+    border: 2px solid yellow;
+    font-size: 20px;
+    color: #091534;
 }
