@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: blue;
+    margin-top: 10px;
+}
+ 
+ #board {
+    display: flex;
+ }
+
+
+ .column {
+    background: white;
+    display: flex;
+    flex-direction: column-reverse;
+    height:600px;
+    width: 100px;
+    border: 1px solid black;
+}
+.disc {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+ }
+
+.red {
+background-color: red;
+}
+
+.black {
+background-color: black;
+}
