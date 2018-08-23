@@ -1,5 +1,6 @@
 //  the model is looking at this as if the column is a row, why is the click putting the disc at the bottom of the player view? I'm guessing code starting at line 42...
 let currentPlayer;
+let winCondition = false;
 
 function initGame() {
     initModel()
@@ -15,8 +16,10 @@ function togglePlaya() {
     }
 }
 
+
 // the six lines below tell the computer what to do when the user clicks on a column(columnEvent? columnIndex?)
 function whenTheUserClicks(clickEvent) {
+    if (winCondition) return;
     const columnElement = clickEvent.currentTarget;
     if (columnElement.childElementCount >= 6) return;
     // return will trigger the computer to stop executing the function
@@ -24,7 +27,7 @@ function whenTheUserClicks(clickEvent) {
     checkWin();
     togglePlaya();
 }
-
+ 
 
 // the 7 lines below tell the computer how to drop a disc--the first four lines make changes to the DOM; the second three make changes to the players view.
 function dropDisc(columnElement) {
@@ -39,9 +42,10 @@ function checkWin() {
         searchForFourConsecutiveDiscs(horizontally) 
         || searchForFourConsecutiveDiscs(vertically) 
         || searchForFourConsecutiveDiscs(diagonallyUpRight)
-        || searchForFourConsecutiveDiscs(diagonallyUpLeft)
+        || searchForFourDiagonallyLeft(diagonallyUpLeft)
     ) {
         addWinMessage();
+        winCondition = true;
     }
 }
 
@@ -52,6 +56,24 @@ function searchForFourConsecutiveDiscs(searchFunction) {
     for (let columnIndex = 0; columnIndex < columnEdge; columnIndex++) {
         const column = boardModel[columnIndex];
         const rowEdge = column.length - 3; /* 4 */
+        for (let rowIndex = 0; rowIndex < rowEdge; rowIndex++) {
+            let cell = boardModel[columnIndex][rowIndex];
+            if (cell !== 0) {
+                const matchFound = searchFunction(cell, columnIndex, rowIndex);
+                if (matchFound) return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+function searchForFourDiagonallyLeft (searchFunction) {
+    console.log(boardModel)
+    const columnEdge = boardModel.length;
+    for (let columnIndex = 3; columnIndex < columnEdge; columnIndex++) {
+        const column = boardModel[columnIndex];
+        const rowEdge = column.length -3; /* 4 */
         for (let rowIndex = 0; rowIndex < rowEdge; rowIndex++) {
             let cell = boardModel[columnIndex][rowIndex];
             if (cell !== 0) {
@@ -91,7 +113,7 @@ function diagonallyUpRight(cell, columnIndex, rowIndex) {
 }
 
 function diagonallyUpLeft(cell, columnIndex, rowIndex ) {
-if (cell === boardModel[columnIndex + 1][rowIndex - 1] && cell === boardModel[columnIndex + 2][rowIndex - 2] && cell === boardModel[columnIndex + 3][rowIndex - 3]) {
+if (cell === boardModel[columnIndex - 1][rowIndex + 1] && cell === boardModel[columnIndex - 2][rowIndex + 2] && cell === boardModel[columnIndex - 3][rowIndex + 3]) {
     console.log("4 in a row up-left found at " + (columnIndex + 1) + ":" + (rowIndex + 1))
     return true;
     }
