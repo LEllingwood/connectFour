@@ -24,7 +24,7 @@ function initView() {
 }
 
 function addWinMessage() {
-    const message = document.createTextNode("You win, Dummy!");
+    const message = document.createTextNode("You win! For now...");
     const newP = document.createElement("p");
     const destination = document.getElementById("winMessage");
     newP.appendChild(message);

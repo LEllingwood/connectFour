@@ -39,9 +39,9 @@ function dropDisc(columnElement) {
 // the functions below check for a win:
 function checkWin() {
     if (
-        searchForFourConsecutiveDiscs(horizontally) 
-        || searchForFourConsecutiveDiscs(vertically) 
-        || searchForFourConsecutiveDiscs(diagonallyUpRight)
+        searchForFourConsecutiveDiscsHorizontally(horizontally) 
+        || searchForFourConsecutiveDiscsVertically(vertically) 
+        || searchForFourConsecutiveDiscsDiagonallyUpRight(diagonallyUpRight)
         || searchForFourDiagonallyLeft(diagonallyUpLeft)
     ) {
         addWinMessage();
@@ -49,8 +49,8 @@ function checkWin() {
     }
 }
 
-//  set edge of board: 
-function searchForFourConsecutiveDiscs(searchFunction) {
+//  set edge of board horizontally: 
+function searchForFourConsecutiveDiscsHorizontally(searchFunction) {
     console.log(boardModel)
     const columnEdge = boardModel.length - 3;
     for (let columnIndex = 0; columnIndex < columnEdge; columnIndex++) {
@@ -64,10 +64,45 @@ function searchForFourConsecutiveDiscs(searchFunction) {
             }
         }
     }
-
     return false;
 }
 
+// set edge of board vertically
+function searchForFourConsecutiveDiscsVertically(searchFunction) {
+    console.log(boardModel)
+    const columnEdge = boardModel.length;
+    for (let columnIndex = 0; columnIndex < columnEdge; columnIndex++) {
+        const column = boardModel[columnIndex];
+        const rowEdge = column.length - 3; /* 4 */
+        for (let rowIndex = 0; rowIndex < rowEdge; rowIndex++) {
+            let cell = boardModel[columnIndex][rowIndex];
+            if (cell !== 0) {
+                const matchFound = searchFunction(cell, columnIndex, rowIndex);
+                if (matchFound) return true;
+            }
+        }
+    }
+    return false;
+}
+// set edge of board diagonally up right
+function searchForFourConsecutiveDiscsDiagonallyUpRight(searchFunction) {
+    console.log(boardModel)
+    const columnEdge = boardModel.length - 3;
+    for (let columnIndex = 0; columnIndex < columnEdge; columnIndex++) {
+        const column = boardModel[columnIndex];
+        const rowEdge = column.length - 3; /* 4 */
+        for (let rowIndex = 0; rowIndex < rowEdge; rowIndex++) {
+            let cell = boardModel[columnIndex][rowIndex];
+            if (cell !== 0) {
+                const matchFound = searchFunction(cell, columnIndex, rowIndex);
+                if (matchFound) return true;
+            }
+        }
+    }
+    return false;
+}
+
+// set edge of board diagonally left
 function searchForFourDiagonallyLeft (searchFunction) {
     console.log(boardModel)
     const columnEdge = boardModel.length;
